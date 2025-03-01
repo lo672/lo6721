@@ -3,24 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Load Content into Blank Page</title>
+    <title>Inject Content into Blank Page</title>
 </head>
 <body>
-    <h1>Open a Blank Page and Load Content</h1>
-    <p>
-        <a href="about:blank" target="_blank" onclick="openBlankPage()">Click me to open a blank page and load content</a>
-    </p>
+    <h1>Click the Link to Open a Blank Page and Load Content</h1>
+    <p><a href="about:blank" target="_blank" id="open-blank">Open Blank Page and Inject Content</a></p>
 
     <script>
-        function openBlankPage() {
-            // Open a new blank window/tab
-            var newWindow = window.open('about:blank', '_blank');
+        document.getElementById('open-blank').addEventListener('click', function(event) {
+            // Prevent the default behavior of the anchor tag (opening about:blank directly)
+            event.preventDefault();
 
-            // Load content dynamically into the blank page
+            // Open a new blank window/tab
+            const newWindow = window.open('about:blank', '_blank');
+
+            // Write content into the blank page
             newWindow.document.write('<h2>Welcome to the Blank Page!</h2>');
-            newWindow.document.write('<p>This content was added dynamically using JavaScript.</p>');
-            newWindow.document.write('<p>You can add anything here, like <strong>HTML</strong>, <em>CSS</em>, or <u>JavaScript</u>!</p>');
-        }
+            newWindow.document.write('<p>This content is injected without changing the URL.</p>');
+            newWindow.document.write('<p>You can add more content here using JavaScript!</p>');
+            
+            // You can add more content dynamically as needed
+        });
     </script>
 </body>
 </html>
