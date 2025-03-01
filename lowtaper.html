@@ -3,27 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inject Content into Blank Page</title>
+    <title>GitHub Link Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        input {
+            padding: 10px;
+            margin: 10px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #333;
+        }
+    </style>
 </head>
 <body>
-    <h1>Click the Link to Open a Blank Page and Load Content</h1>
-    <p><a href="about:blank" target="_blank" id="open-blank">Open Blank Page and Inject Content</a></p>
+    <h1>GitHub Link Generator</h1>
+    <p>Enter a GitHub username and repository name to generate the link:</p>
+    
+    <label for="username">Username:</label>
+    <input type="text" id="username" placeholder="Enter username">
+    
+    <label for="repo">Repository:</label>
+    <input type="text" id="repo" placeholder="Enter repository name">
+    
+    <button onclick="generateLink()">Generate GitHub Link</button>
+    
+    <div class="result" id="result"></div>
 
     <script>
-        document.getElementById('open-blank').addEventListener('click', function(event) {
-            // Prevent the default behavior of the anchor tag (opening about:blank directly)
-            event.preventDefault();
-
-            // Open a new blank window/tab
-            const newWindow = window.open('about:blank', '_blank');
-
-            // Write content into the blank page
-            newWindow.document.write('<h2>Welcome to the Blank Page!</h2>');
-            newWindow.document.write('<p>This content is injected without changing the URL.</p>');
-            newWindow.document.write('<p>You can add more content here using JavaScript!</p>');
+        function generateLink() {
+            var username = document.getElementById("username").value;
+            var repo = document.getElementById("repo").value;
             
-            // You can add more content dynamically as needed
-        });
+            if (username && repo) {
+                var link = "https://github.com/" + username + "/" + repo;
+                document.getElementById("result").innerHTML = "Generated Link: <a href='" + link + "' target='_blank'>" + link + "</a>";
+            } else {
+                document.getElementById("result").innerHTML = "Please enter both a username and a repository name.";
+            }
+        }
     </script>
 </body>
 </html>
