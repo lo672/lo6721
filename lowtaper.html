@@ -3,61 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GitHub Link Generator</title>
+    <title>Google URL Generator</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            padding: 20px;
-            background-color: #f9f9f9;
+            margin: 50px;
         }
-        input {
-            padding: 10px;
-            margin: 10px;
+        label, input, button {
             font-size: 16px;
+            padding: 8px;
+            margin: 10px 0;
         }
-        button {
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 5px;
-        }
-        button:hover {
-            background-color: #45a049;
-        }
-        .result {
-            margin-top: 20px;
-            font-size: 18px;
-            color: #333;
+        #generated-url {
+            font-weight: bold;
+            color: green;
         }
     </style>
 </head>
 <body>
-    <h1>GitHub Link Generator</h1>
-    <p>Enter a GitHub username and repository name to generate the link:</p>
-    
-    <label for="username">Username:</label>
-    <input type="text" id="username" placeholder="Enter username">
-    
-    <label for="repo">Repository:</label>
-    <input type="text" id="repo" placeholder="Enter repository name">
-    
-    <button onclick="generateLink()">Generate GitHub Link</button>
-    
-    <div class="result" id="result"></div>
+    <h1>Google Search URL Generator</h1>
+    <label for="search-query">Enter your search query:</label>
+    <input type="text" id="search-query" placeholder="Type here...">
+    <button onclick="generateUrl()">Generate Google Search URL</button>
+
+    <p id="generated-url"></p>
 
     <script>
-        function generateLink() {
-            var username = document.getElementById("username").value;
-            var repo = document.getElementById("repo").value;
-            
-            if (username && repo) {
-                var link = "https://github.com/" + username + "/" + repo;
-                document.getElementById("result").innerHTML = "Generated Link: <a href='" + link + "' target='_blank'>" + link + "</a>";
+        function generateUrl() {
+            var query = document.getElementById("search-query").value;
+            if (query) {
+                var googleUrl = "https://www.google.com/search?q=" + encodeURIComponent(query);
+                document.getElementById("generated-url").innerHTML = "Generated Google URL: <a href='" + googleUrl + "' target='_blank'>" + googleUrl + "</a>";
             } else {
-                document.getElementById("result").innerHTML = "Please enter both a username and a repository name.";
+                document.getElementById("generated-url").innerHTML = "Please enter a search query.";
             }
         }
     </script>
