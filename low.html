@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google URL Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 50px;
+        }
+        label, input, button {
+            font-size: 16px;
+            padding: 8px;
+            margin: 10px 0;
+        }
+        #generated-url {
+            font-weight: bold;
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <h1>Google Search URL Generator</h1>
+    <label for="search-query">Enter your search query:</label>
+    <input type="text" id="search-query" placeholder="Type here...">
+    <button onclick="generateUrl()">Generate Google Search URL</button>
+
+    <p id="generated-url"></p>
+
+    <script>
+        function generateUrl() {
+            var query = document.getElementById("search-query").value;
+            if (query) {
+                var googleUrl = "https://www.google.com/search?q=" + encodeURIComponent(query);
+                document.getElementById("generated-url").innerHTML = "Generated Google URL: <a href='" + googleUrl + "' target='_blank'>" + googleUrl + "</a>";
+            } else {
+                document.getElementById("generated-url").innerHTML = "Please enter a search query.";
+            }
+        }
+    </script>
+</body>
+</html>
